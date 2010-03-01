@@ -1,0 +1,16 @@
+<h1>Editing mobile</h1>
+
+<% form_for(@mobile) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :mobile %><br />
+    <%= f.text_field :mobile %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @mobile %> |
+<%= link_to 'Back', mobiles_path %>

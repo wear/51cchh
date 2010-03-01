@@ -1,0 +1,10 @@
+<div id="sidebar" class='ui-corner-all'>
+  <% @category_filters.sort.each do |filter, categories| %>
+    <span class='filter'><%= filter %></span>
+    <ul>
+    <% for cate in categories %>
+        <li><%=link_to cate.name,category_path(cate,:query => params[:query]) %>(<%= cate.vendors_count%>)</li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>

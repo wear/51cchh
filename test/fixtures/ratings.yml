@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  count: 1
+  kind: MyString
+  vendor_id: 1
+
+two:
+  count: 1
+  kind: MyString
+  vendor_id: 1

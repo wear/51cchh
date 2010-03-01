@@ -1,0 +1,26 @@
+<%=link_to '新建分类',new_admin_category_path %> | <%=link_to '重设计数',reset_count_admin_categories_path %>     
+<table border="0" cellspacing="5" cellpadding="5">
+<thead>
+  <tr>
+    <th>filter</th>
+    <th>city</th>
+    <th>name</th>  
+    <th>count</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  
+  <% @categories.each do |cate| %>
+  <tr> 
+  <td><%=cate.filter%></td> 
+  <td><%=cate.city%></td>
+  <td><%=cate.name%></td>
+  <td><%=cate.vendors_count%></td> 
+  <td><%=link_to 'edit',edit_admin_category_path(cate)%> | <%=link_to 'delete',admin_category_path(cate),:method => :delete%>   
+  </tr>  
+  <% end %>              
+
+</tbody>
+</table>
+

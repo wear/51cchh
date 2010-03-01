@@ -1,0 +1,49 @@
+<style type="text/css" media="screen">
+  .login{text-align:center;width:400px;margin:30px auto;}  
+  form.formtastic li label{ float:left;width:8em;font-size:12px;color:#514c48;text-align:right; margin-right:1em;} 
+</style>
+
+<div class='login'>
+<h1>登录</h1>    
+<div id='notice_msg' class='f_notice'></div>
+<div id="error_msg" class='f_error'></div>
+<% form_tag session_path,:class => 'formtastic' do -%>
+<li><%= label_tag 'login or mobile' %>
+<%= text_field_tag 'login', @login,:id => 'login' %> <%=link_to_function '手机用户获得密码',"send_verify($('#login').val())" %> </li>
+
+<li><%= label_tag 'password' %>
+<%= password_field_tag 'password', nil %></li>
+
+<!-- Uncomment this if you want this functionality
+<p><%= label_tag 'remember_me', 'Remember me' %>
+<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+-->
+
+<li style='text-align:center'><%= submit_tag 'Log in' %></li>
+<% end -%>
+                                
+</div> 
+
+<script type="text/javascript" charset="utf-8">
+	function send_verify(mobile) { 
+	  var reg0=/^13\d{5,9}$/;   //130--139。至少7位
+	  var reg1=/^153\d{8}$/;  //联通153。至少7位
+	  var reg2=/^159\d{8}$/;  //移动159。至少7位
+	  var reg3=/^158\d{8}$/;
+	  var reg4=/^150\d{8}$/;
+	  var my=false;
+	  if (reg0.test(mobile))my=true;
+	  if (reg1.test(mobile))my=true;
+	  if (reg2.test(mobile))my=true;
+	  if (reg3.test(mobile))my=true;
+	  if (reg4.test(mobile))my=true;
+		 if (!my){ 
+			alert('对不起，您输入的手机号码错误。');
+		 } else{
+		   $.post("/get_password", { mobile: mobile },
+          function(data){
+            alert(data);
+          });
+		 } 	
+	}  
+</script>

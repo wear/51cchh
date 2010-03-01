@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>application.html</title>
+  <%= stylesheet_link_tag 'main','ui.tabs','jquery-ui','star_rating' %> 
+  <%= javascript_include_tag 'jquery','jquery-ui','jquery.tablesorter.min','jrails','application' %>
+  <link href="/facybox/facybox.css" media="screen" rel="stylesheet" type="text/css"/>
+  <script src="/facybox/facybox.js" type="text/javascript"></script>
+  <%= yield :headers %>   
+  
+</head>
+<body>
+  <div id="container"> 
+    <div id="header">  
+         <div id="top_bar_l">
+           欢迎访问<span class="b">无忧吃吃喝喝</span> 
+  	  	   <span style='margin:0 10px;font-size:14px;font-weight:bold;'><%=render_city%></span><%=link_to_function '切换城市',"$('#cities').toggle();",:class => 'array' %> 
+  	  	   <div id="cities">
+  	  	      <ul>
+    	  	     <li><%=link_to '上海',root_path(:city => 'sh')%></li>
+    	  	     <li><%=link_to '北京',root_path(:city => 'bj')%></li>
+    	  	    </ul> 
+  	  	   </div>
+        </div>  
+        <div id="top_bar_r">
+            <% if logged_in? %>	
+              <%= link_to '注销', logout_path, :method => 'delete' %>
+            <% else %>
+              <%= link_to '注册新用户', signup_path %> |
+              已经注册了？<%= link_to '立即登录', login_path %>
+            <% end %>
+        </div>
+       <ul class='menu'>
+         <li class='xc'><%=image_tag('blank.gif')%></li> 
+         <li class='yy'><%=image_tag('blank.gif')%></li> 
+         <li class='xd'><%=image_tag('blank.gif')%></li> 
+         <li class='logo'><%=link_to image_tag('blank.gif'),root_path %></li>
+         <li class='ll'><%=image_tag('blank.gif')%></li>
+         <li class='zc'><%=image_tag('blank.gif')%></li>
+         <li class='jb'><%=image_tag('blank.gif')%></li> 
+       </ul>
+    </div> 
+    <% if @search -%> 
+    <div id="search_area" class='ui-corner-bottom'>
+         <% form_tag(vendors_path,:class => 'search-form',:method => :get) do %>
+          <%= text_field_tag 'query','',:class => 'search-input',:value => params[:query] || '如:川菜'%>
+          <%=image_submit_tag "/images/bg/so_bot_big.png",:class => 'search-submit'%>
+         <% end %>
+    </div>    
+    <% end %>
+    <div id='wrapper'> 
+      <%= render :partial => '/shared/notice' %>
+      <%= yield %>
+    </div>
+     <div id="footer">
+       <%= render :partial => '/shared/footer' %> 
+     </div> 
+  </div>
+</body>
+</html>

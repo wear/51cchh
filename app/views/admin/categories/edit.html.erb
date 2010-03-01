@@ -1,0 +1,12 @@
+<% content_for :head do -%>
+<div id="warpper-header">
+  <h2>编辑分类</h2>
+</div>
+<% end -%>     
+
+<% semantic_form_for @category,:url => admin_category_path(@category)  do |c| %> 
+  <%= c.input :name %>
+  <%= c.input :filter,:as => :select,:collection => ["地区",'菜系','均价'],:prompt => '请选择类型...'%>
+  <%= c.input :city,:as => :select,:collection => ['sh','bj'],:prompt => '请选择城市...'%>  
+  <%= c.buttons %>
+<% end %>

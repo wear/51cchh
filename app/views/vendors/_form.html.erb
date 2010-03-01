@@ -1,0 +1,7 @@
+<% f.inputs :name => "Basic" do %>           
+	<%= f.inputs  %>
+<% end %>
+
+<% f.inputs :name => 'rating', :for => :rating do |rating_form| -%>
+	<%= rating_form.input :kind,:as => :select, :collection => ['口味','环境','服务','人均'] %>
+<% end %>
