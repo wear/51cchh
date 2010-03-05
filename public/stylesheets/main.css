@@ -122,7 +122,7 @@ ul.menu li.logo{
   position:relative;
   padding:20px;
   width:160px;
-  top:-30px;
+  top:-40px;
 }
 
 .yy{
@@ -154,21 +154,23 @@ ul.menu li.logo{
 
 /* ---------- search ----------*/   
 
-#search_area{   
-	position:relative;
+#search_area{ 
+	position:relative;  
 	padding:10px;
 	width:400px; 
 	height:50px;
 	background:#FDF0C0;
-	margin:0 auto;
+	margin:0px auto
 }   
 
-form.search-form{
-	position:relative;
-	top:-30px;
+form.search-form{  
+	float:left; 
+	margin-top:-30px;
+	margin-left:25px;
+	height:40px;
 }
 
-.search-input{
+.search-input{ 
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	border: 1px solid #631400;
@@ -177,7 +179,7 @@ form.search-form{
 	padding-right: 4px;
 	padding-bottom: 4px;
 	padding-left: 5px;
-	height: 21px;
+	height: 21px;    
 }  
 
 .search-submit{
@@ -236,12 +238,12 @@ UL.tabNavigation LI a:hover {
     background: url(/images/bg/tab.png) no-repeat right;
     color: #000;      
 	font-size:12px; 
-	padding-top:9px;  
+	padding-top:7px;  
 } 
 
 UL.tabNavigation LI a.selected span,
 UL.tabNavigation LI a:hover span{       
-	padding:9px;
+	padding:7px;
 	background: url(/images/bg/tab.png) no-repeat; 
 }
 
@@ -503,7 +505,8 @@ span.filter{
   float: left;
   padding: 0px;
 }     
-   
+  
+ 
 
 
 /* -------------------------------------------------------------------------------------------------
@@ -556,3 +559,5 @@ form.formtastic fieldset ol li.datetime fieldset ol li label input { display:inl
 form.formtastic fieldset ol li label { display:block; width:5em; float:left; padding-top:.2em; }
 form.formtastic fieldset ol li li label { line-height:100%; padding-top:0; }
 form.formtastic fieldset ol li li label input { line-height:100%; vertical-align:middle; margin-top:-0.1em;}
+
+

@@ -19,9 +19,9 @@ class UsersController < ApplicationController
   def get_password  
     set_user_by_mobile(params[:mobile])
     respond_to do |wants|                     
-      if Hesine::Bundle.bind(:phone => @user.mobile)['StatusCode'] == '200'
+      if Hesine::Bundle.bind(:phone => @user.mobile)['StatusCode'] == '405'
         reset_password
-        @res = Hesine::Message.send(:phone => @user.mobile,:from => '"客服"<support@mhqx001>',:to => "#{@user.mobile}@mhqx001",
+        @res = Hesine::Message.send(:phone => @user.mobile,:from => '"无忧吃吃喝喝客服"<support@wycchh>',:to => "#{@user.mobile}@wycchh",
         :subject => '您在无忧吃吃喝喝的密码',:body => "您的密码为#{@pwd}")
         wants.js {  render :text => '密码已发送到您的手机'  } 
        else
@@ -34,11 +34,11 @@ class UsersController < ApplicationController
     @vendor = Vendor.find(params[:vendor_id])    
     set_user_by_mobile(params[:user][:mobile])
     respond_to do |wants| 
-      if Hesine::Bundle.bind(:phone => @user.mobile)['StatusCode'] == '200'
+      if Hesine::Bundle.bind(:phone => @user.mobile)['StatusCode'] == '405'
         self.current_user = @user
         wants.js { 
           render  :update do |page|  
-            page.redirect_to new_vendor_bookings_path(@vendor)   
+            page.redirect_to new_vendors_booking_path(@vendor)   
           end
          }
        else
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   protected     
   
   def reset_password     
-    @pwd = User.generate_new_password
+    @pwd = User.generate_new_password(6)
     @user.update_attributes(:password => @pwd,:password_confirmation => @pwd)
   end
   

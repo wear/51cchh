@@ -21,6 +21,17 @@ class BookingsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @booking }
     end
+  end 
+  
+  def run     
+    @booking = Booking.find(params[:id])  
+    respond_to do |wants|               
+      if @booking.run!
+        wants.html {  } 
+      else
+        wants.html { redirect_to '/' }  
+      end
+    end
   end
 
   # GET /bookings/new
@@ -48,9 +59,10 @@ class BookingsController < ApplicationController
     respond_to do |format|
       if @booking.save
         flash[:notice] = 'Booking was successfully created.'
-        format.html { redirect_to(@booking) }
+        format.html { redirect_to(vendor_booking_path @vendor,@booking) }
         format.xml  { render :xml => @booking, :status => :created, :location => @booking }
-      else
+      else    
+        flash[:error] = '有错误发生,请检查表单格式是否正确!'
         format.html { render :action => "new" }
         format.xml  { render :xml => @booking.errors, :status => :unprocessable_entity }
       end
@@ -65,7 +77,7 @@ class BookingsController < ApplicationController
     respond_to do |format|
       if @booking.update_attributes(params[:booking])
         flash[:notice] = 'Booking was successfully updated.'
-        format.html { redirect_to(@booking) }
+        format.html { redirect_to(vendor_booking_path @vendor,@booking) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -91,4 +103,6 @@ class BookingsController < ApplicationController
   def find_vendor
     @vendor = Vendor.find(params[:vendor_id])
   end
+  
+
 end

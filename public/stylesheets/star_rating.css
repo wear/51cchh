@@ -1,8 +1,6 @@
 .rating{
 width:80px;
 height:16px;
-margin:0 0 20px 0;
-padding:0;
 list-style:none;
 clear:both;
 position:relative;
@@ -37,4 +35,3 @@ ul.rating li.five a {left:64px;}
 .threestar {background-position:0 -48px}
 .fourstar {background-position:0 -64px}
 .fivestar {background-position:0 -80px}
-
