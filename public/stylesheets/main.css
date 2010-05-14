@@ -480,18 +480,13 @@ span.filter{
 	clear:both;
 	width:900px;
 	padding:5px;
-	background-image: url(/images/bg/bot_bg.gif);
-	background-repeat: repeat-x;
-	height: 40px;
+	background: url(/images/bg/bot_bg.gif) 10px repeat-x;
+	height: 80px;
 	margin-top: 10px;
 	margin-right: 0px;
 	margin-bottom: 0px;
 	margin-left: 0px;
 	text-align:center;
-}
-
-#nouce{
-	margin:20px 240px;
 }
 
 #footer li {
@@ -505,7 +500,10 @@ span.filter{
   float: left;
   padding: 0px;
 }     
-  
+         
+.city{
+	margin:0 10px;font-size:14px;font-weight:bold;
+}
  
 
 

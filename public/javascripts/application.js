@@ -27,7 +27,8 @@ $(document).ready(function($) {
 
 	$(".first_row_class").click(function(){         
 	   $(this).find('td.collapsible a').click();
-	});
+	}); 
+   
 }); 
 
 var myTextExtraction = function(node)  
@@ -59,3 +60,10 @@ $(document).ready(function() {
 );         
 
 
+function change_city(){
+	$("#cities").toggle();
+}      
+
+$(document).mouseup(function(e) {
+	$("#cities").hide();     
+});

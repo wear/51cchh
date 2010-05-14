@@ -19,7 +19,7 @@
     <div id="header">  
          <div id="top_bar_l">
            欢迎访问<span class="b">无忧吃吃喝喝</span> 
-  	  	   <span style='margin:0 10px;font-size:14px;font-weight:bold;'><%=render_city%></span><%=link_to_function '切换城市',"$('#cities').toggle();",:class => 'array' %> 
+  	  	   <span class='city'><%=render_city%></span><%=link_to_function '切换城市',"change_city()",:class => 'array' %> 
   	  	   <div id="cities">
   	  	      <ul>
     	  	     <li><%=link_to '上海',root_path(:city => 'sh')%></li>
