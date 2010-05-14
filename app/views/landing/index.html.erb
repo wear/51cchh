@@ -19,7 +19,7 @@
   <%= render :partial => '/shared/filters' %>
 <div class="tabs">
      <ul class="tabNavigation">
-         <li><a href="#first"><span>本周首选Top30</span></a></li> 
+         <li><a href="#first"><span id='first-tab'>本周首选Top30</span></a></li> 
      </ul>
      <div id="first">
    		<table class='grid tablesorter' cellspacing="0" cellpadding="0" border="0">
@@ -47,7 +47,7 @@
    			  <th></th>  
    		</tr> 
    		</thead> 
-   		 <tbody >
+   		 <tbody id='vendor_list'>
    		  <%= render :partial => '/shared/vendor',:collection => @vendors  %>
    		 </tbody> 
    		 </table>

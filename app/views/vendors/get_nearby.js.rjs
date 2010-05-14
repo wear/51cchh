@@ -1,0 +1,5 @@
+#page.alert('This message is from Rails!')
+page.replace_html 'vendor_list',:partial => '/shared/vendor',:collection => @vendors
+page.replace_html 'first-tab', '离你最近的' 
+page << "$('.tablesorter').collapsible('td.collapsible', {collapse: true}).tablesorter({ headers: {0: {sorter: false},1: {sorter: false} }});"
+page << "$('.first_row_class').click(function(){ $(this).find('td.collapsible a').click();});"

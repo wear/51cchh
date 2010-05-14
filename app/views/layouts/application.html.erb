@@ -7,14 +7,35 @@
   <link href="/facy_box/facybox.css" media="screen" rel="stylesheet" type="text/css"/>          
   <%= stylesheet_link_tag 'main','ui.tabs','jquery-ui','star_rating' %> 
   <%= javascript_include_tag 'jquery','jquery-ui','jquery.tablesorter.min','jrails','application' %>
-
   <script src="/facy_box/facybox.js" type="text/javascript"></script>
-  <%= yield :headers %>   
+  <%= yield :headers %>    
+  <script type="text/javascript" charset="utf-8">
+    function initialize(){
+       if (navigator.geolocation) {
+           navigator.geolocation.getCurrentPosition(showMap);
+           return false;
+       } 
+     }        
+     
+     function showMap(position){
+       var lat = position.coords.latitude;
+       var lng = position.coords.longitude;    
+       $.ajax({
+         type: "GET",
+         url: "/vendors/get_nearby", 
+         dataType: "script",
+         data: "lat="+lat+"&lng="+lng
+       });
+
+      }
+  </script>
   <style type="text/css" media="screen">
 		img, div { behavior:url(/iepngfix.htc); }  
-	</style>
+	</style>    
+	
+	
 </head>
-<body>
+<body onload="initialize()" > 
   <div id="container"> 
     <div id="header">  
          <div id="top_bar_l">
@@ -55,7 +76,10 @@
     <% end %>
     <div id='wrapper'> 
       <%= render :partial => '/shared/notice' %>
-      <%= yield %>
+      <%= yield %> 
+      <div id="geo">
+        
+      </div>
     </div>
      <div id="footer">
        <%= render :partial => '/shared/footer' %> 

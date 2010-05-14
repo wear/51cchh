@@ -11,6 +11,15 @@ class VendorsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @vendors }
     end
+  end     
+  
+  def get_nearby
+    @vendors = Vendor.find(:all,:origin =>[params[:lat],params[:lng]],
+                           :conditions => "distance < 0.8")
+    
+    respond_to do |wants|
+      wants.js {  }
+    end
   end
 
   # GET /vendors/1

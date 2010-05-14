@@ -1,3 +1,6 @@
 class Vendor < ActiveRecord::Base
-  has_many :ratings
+  has_many :ratings      
+  acts_as_mappable
+
+  
 end

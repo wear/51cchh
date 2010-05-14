@@ -56,8 +56,7 @@ $(document).ready(function() {
         $(".tablesorter").collapsible("td.collapsible", {
 								collapse: true
 							}).tablesorter({ headers: {0: {sorter: false},1: {sorter: false} }}); 
-    } 
-);         
+    });         
 
 
 function change_city(){
