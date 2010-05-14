@@ -39,5 +39,21 @@ module ApplicationHelper
     end
   end
   
+  def distance_of(distance)
+    f(distance.to_f,1,1)
+  end  
+            
+  #四舍五入
+  def f(i,n,flag)  
+    y = 1  
+    n.times do |x|  
+      y = y*10  
+    end  
+    if flag==1  
+     (i*y).round/(y*1.0)  
+    else  
+    (i*y).floor/(y*1.0)  
+    end  
+  end
   
 end
