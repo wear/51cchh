@@ -55,7 +55,8 @@ $.tablesorter.addParser({
 $(document).ready(function() { 
         $(".tablesorter").collapsible("td.collapsible", {
 								collapse: true
-							}).tablesorter({headers:{0:{sorter: false},1:{sorter: false},9:{sorter: false} }}); 
+							}).tablesorter({headers:{0:{sorter: false},1:{sorter: false},5:{sorter:'price'
+							},9:{sorter: false}},textExtraction: myTextExtraction,sortList: [[6,1]]}); 
     });         
 
 
