@@ -1,0 +1,14 @@
+<ul title="首页" >
+    <li><%= link_to '分类查询', '#categories' %></li>
+    <li><%= link_to '查找周边', nearby_path %></li>
+</ul>
+      
+<ul title="首页"  id="vendors" selected="true">
+  <% @vendors.each do |vendor| -%>
+    <li>
+    <a class="count"><%= make_score(vendor.sum) %></a> 
+    <%=link_to vendor.name,vendor %> 
+    <div class='score'><%= render :partial => '/shared/star',:locals => { :vendor => vendor }%></div>
+    </li>
+  <% end -%>
+</ul>       

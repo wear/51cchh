@@ -18,7 +18,12 @@ class VendorsController < ApplicationController
                            :conditions => "distance < 0.8")
     
     respond_to do |wants|
-      wants.js {  }
+      wants.js {  } 
+      wants.iphone { 
+       render :update do |page|
+        page.replace_html 'vendors',:partial => '/shared/ivendor',:locals => {:vendors => @vendors }
+       end 
+      }
     end
   end
 
@@ -29,6 +34,7 @@ class VendorsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.iphone { render :layout => false }
       format.xml  { render :xml => @vendor }
     end
   end

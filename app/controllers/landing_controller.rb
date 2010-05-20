@@ -5,6 +5,12 @@ class LandingController < ApplicationController
      @search = true                    
      set_filter
      @vendors = Vendor.find(:all,:limit => 30,:order => 'sum DESC',:conditions => ['city=?',session[:city]])
-  end
+     
+     respond_to do |wants|
+      wants.html {  }
+      wants.iphone { }
+     end
+  end           
+  
 
 end

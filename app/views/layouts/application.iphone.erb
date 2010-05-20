@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>  
+    <title><%= @page_title -%></title>
+    <%= javascript_include_tag 'jquery','jrails','application' %> 
+    <%= stylesheet_link_tag '/iui/iui','star_rating' %>  
+    <%= javascript_include_tag '/iui/iui' %>
+  <style type="text/css" media="screen"> 
+  body > ul > li {
+      font-size: 14px;
+  }
+
+  body > ul > li > a {
+      padding-left: 54px;
+      padding-right: 40px;
+      min-height: 34px; 
+  }
+  
+  div.score{             
+    position: absolute;
+    top:30px;
+    font-size:10px;
+    color:#666;
+    padding-left: 54px;
+    padding-right: 40px; 
+  }  
+  
+  li .count {
+      display: block;
+      position: absolute;
+      margin: 0;
+      left: 6px;
+      top: 7px;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: -0.07em;
+      color: #93883F;
+      font-weight: bold;
+      text-decoration: none;
+      width: 36px;
+      height: 30px;
+      padding: 2px 0 0 0;
+      background: url(/images/shade-compact.gif) no-repeat;
+  }
+  </style>    
+  <script>
+  function initialize(){
+   navigator.geolocation.getCurrentPosition(handler); 
+  }
+   
+  function handler(location) { 
+    lat =  location.coords.latitude;
+    lng =  location.coords.longitude;
+    $.ajax({
+      type: "GET",
+      url: "/vendors/get_nearby", 
+      dataType: "script",
+      data: "lat="+lat+"&lng="+lng
+    });           
+  }
+  </script>
+</head>
+<body onload='initialize()'>
+    <div class="toolbar">
+        <h1 id="pageTitle"></h1>
+        <a id="backButton" class="button" href="#"></a>
+    </div>
+    <%= yield %>          
+</body>
+</html>

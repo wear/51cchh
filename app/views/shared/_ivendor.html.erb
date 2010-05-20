@@ -1,0 +1,7 @@
+<% @vendors.each do |vendor| %>
+<li>
+<a class="count"><%= distance_of vendor.distance %><br />公里</a> 
+<%=link_to vendor.name,vendor %> 
+<div class='score'><%= render :partial => '/shared/star',:locals => { :vendor => vendor }%></div>
+</li>
+<% end %>
