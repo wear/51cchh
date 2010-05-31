@@ -48,7 +48,7 @@
    		</tr> 
    		</thead> 
    		 <tbody >
-   		  <%= render :partial => '/shared/vendor',:collection => @vendors  %>
+   		  <%= render :partial => '/shared/vendor',:collection => @vendors,:locals => {:distance => false }  %>
    		 </tbody> 
    		 </table>
      </div>
