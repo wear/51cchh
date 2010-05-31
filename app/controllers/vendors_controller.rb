@@ -14,7 +14,7 @@ class VendorsController < ApplicationController
   end     
   
   def get_nearby
-    @vendors = Vendor.find(:all,:origin =>[params[:lat],params[:lng]],
+    @vendors = Vendor.find(:all,:limit => 30,:origin =>[params[:lat],params[:lng]],
                            :conditions => "distance < 0.8")
     
     respond_to do |wants|

@@ -10,33 +10,13 @@
   <%= javascript_include_tag 'jquery','jquery-ui','jquery.tablesorter.min','jrails','application' %>
   <script src="/facy_box/facybox.js" type="text/javascript"></script>
   <%= yield :headers %>    
-  <script type="text/javascript" charset="utf-8">
-    function initialize(){
-       if (navigator.geolocation) {
-           navigator.geolocation.getCurrentPosition(showMap);
-           return false;
-       } 
-     }        
-     
-     function showMap(position){
-       var lat = position.coords.latitude;
-       var lng = position.coords.longitude;    
-       $.ajax({
-         type: "GET",
-         url: "/vendors/get_nearby", 
-         dataType: "script",
-         data: "lat="+lat+"&lng="+lng
-       });
-
-      }
-  </script>
   <style type="text/css" media="screen">
 		img, div { behavior:url(/iepngfix.htc); }  
 	</style>    
 	
 	
 </head>
-<body onload="initialize()" > 
+<body> 
   <div id="container"> 
     <div id="header">  
          <div id="top_bar_l">
@@ -71,8 +51,9 @@
     <div id="search_area" class='ui-corner-bottom'>
          <% form_tag(vendors_path,:class => 'search-form',:method => :get) do %>
           <%= text_field_tag 'query','',:class => 'search-input',:value => params[:query] || '如:川菜'%>
-          <%=image_submit_tag "/images/bg/so_bot_big.png",:class => 'search-submit'%>
-         <% end %>
+          <%=image_submit_tag "/images/bg/so_bot_big.png",:class => 'search-submit'%> 
+          <%=image_submit_tag "/images/bg/so_nearby_big.gif",:class => 'search-submit',:name => 'nearby',:onclick => "$('.search-input').val('')"%>
+         <% end %>   
     </div>    
     <% end %>
     <div id='wrapper'> 

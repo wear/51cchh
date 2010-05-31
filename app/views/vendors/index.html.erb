@@ -1,4 +1,27 @@
 <% content_for :headers do -%>
+<script type="text/javascript" charset="utf-8">
+  function geolocation(){  
+    if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showMap);
+        return false;
+    } else {
+      alert('你的浏览器不支持周边查找,请使用最新firefox浏览器!'); 
+      window.location = "/";
+    }
+   }        
+   
+   function showMap(position){
+     var lat = position.coords.latitude;
+     var lng = position.coords.longitude;    
+     $.ajax({
+       type: "GET",
+       url: "/vendors/get_nearby", 
+       dataType: "script",
+       data: "lat="+lat+"&lng="+lng
+     });
+
+    }
+</script>
 
 <script type="text/javascript" charset="utf-8">
 	$(function () {
@@ -13,41 +36,51 @@
 			return false;
 		}).filter(':first').click();
 	});
-</script>
+</script>  
+
+<% if params['nearby.x'] %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+       geolocation();
+    })
+  </script>
+<% end %>
 
 <% end -%>
-  <%= render :partial => '/shared/filters' %> 
+<%= render :partial => '/shared/filters' %> 
 <div class="tabs">
      <ul class="tabNavigation">
-         <li><a href="#first"><span>本周首选Top30</span></a></li> 
+         <li><a href="#first"><span>本周首选Top30</span></a></li>
      </ul>
      <div id="first">
    		<table class='grid tablesorter' cellspacing="0" cellpadding="0" border="0">
    			<colgroup>
    			<col width="3%"/>
-   			<col width="42%"/>
+   			<col width="36%"/>
    			<col width="8%"/>
    			<col width="8%"/>
    			<col width="8%"/>
    			<col width="8%"/> 
    			<col width="8%"/>
+   			<col width="12%"/>
    			<col width="8%"/>
    			<col width="3%"/>
    			</colgroup> 
    		<thead> 
    		<tr>   
-      		<th></th> 
-   		    <th><span>餐馆名称</span></th> 
-   		    <th><span>口味</span></th>
-   			  <th><span>环境</span></th> 
-   		    <th><span>服务</span></th>  
-   		    <th>人均</th>
-   			  <th><span>折扣</span></th>
-   			  <th><span>总评</span></th>
-   			  <th></th>  
+    		<th></th> 
+ 		    <th><span>餐馆名称</span></th> 
+ 		    <th><span>口味</span></th>
+ 			  <th><span>环境</span></th> 
+ 		    <th><span>服务</span></th>  
+ 		    <th>人均</th>
+ 			  <th><span>折扣</span></th>
+ 			  <th>距离(公里)</th>
+ 			  <th><span>总评</span></th>
+ 			  <th></th>
    		</tr> 
    		</thead> 
-   		 <tbody >
+   		 <tbody id='vendor_list'>
    		  <%= render :partial => '/shared/vendor',:collection => @vendors,:locals => {:distance => false }  %>
    		 </tbody> 
    		 </table>
