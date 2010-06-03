@@ -38,7 +38,7 @@ class UsersController < ApplicationController
         self.current_user = @user
         wants.js { 
           render  :update do |page|  
-            page.redirect_to new_vendors_booking_path(@vendor)   
+            page.redirect_to new_vendor_booking_path(@vendor)   
           end
          }
        else
