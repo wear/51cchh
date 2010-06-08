@@ -1,0 +1,5 @@
+<h1>用户设定</h1>
+<% semantic_form_for @user,:html => {:style=> 'margin-left:120px;'} do |f| -%>
+<%= render :partial => 'form',:locals => {:f => f}%>     
+<p ><%= submit_tag '提交' %></p>
+<% end -%>

@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.xml
   def index
-    @bookings = Booking.all
+    @bookings = Booking.find(:all,:conditions => ['mobile = ?',current_user.mobile])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -58,7 +58,7 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        flash[:notice] = 'Booking was successfully created.'
+        flash[:notice] = '请确认预定信息.'
         format.html { redirect_to(vendor_booking_path @vendor,@booking) }
         format.xml  { render :xml => @booking, :status => :created, :location => @booking }
       else    
@@ -101,7 +101,7 @@ class BookingsController < ApplicationController
   protected
   
   def find_vendor
-    @vendor = Vendor.find(params[:vendor_id])
+    @vendor = Vendor.find(params[:vendor_id]) if params[:vendor_id]
   end
   
 

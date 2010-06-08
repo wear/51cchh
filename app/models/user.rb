@@ -8,14 +8,14 @@ class User < ActiveRecord::Base
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
-
+  validates_uniqueness_of :mobile
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email,:mobile, :password, :password_confirmation
 
 
-
+  has_many :bookings
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  

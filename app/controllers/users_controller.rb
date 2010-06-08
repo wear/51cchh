@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-
+    before_filter :login_required,:only => [:setting,:update]
   # render new.rhtml
   def new
     @user = User.new
@@ -28,6 +28,18 @@ class UsersController < ApplicationController
         wants.js{  render :text => '你需要绑定手机才能预定,绑定短信已发送到你的手机，请按短信提示操作'  }  
       end
     end
+  end   
+  
+  def update
+   @user = current_user  
+   respond_to do |wants|
+     if @user.update_attributes(params[:user])
+       flash[:notice] = '修改成功'
+    wants.html { redirect_to root_path }
+  else  
+    wants.html { render :action => "setting" }   
+  end
+   end
   end
   
   def create_mobile
@@ -50,6 +62,13 @@ class UsersController < ApplicationController
         }
        end
     end
+  end     
+  
+  def setting 
+    @user = current_user
+    respond_to do |wants|
+      wants.html {  }
+    end
   end
  
   def create
@@ -63,9 +82,9 @@ class UsersController < ApplicationController
       # reset session
       self.current_user = @user # !! now logged in
       redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+    #  flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = "有错误发生,请检查."
       render :action => 'new'
     end
   end
