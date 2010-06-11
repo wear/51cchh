@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20100511072837) do
   
   create_table "users", :force => true do |t| 
     t.string "login"
-    t.string "mobile"
+    t.string "mobile"   
     t.string "email",:limit => 100
     t.string "crypted_password", :limit => 40 
     t.string "salt", :limit => 40 

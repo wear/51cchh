@@ -7,9 +7,9 @@ $(document).ready(function($) {
 	
     // Binding focus and blur events for query input box
   
-	if ($('.search-input').val() == "如:川菜") {
-	   $('.search-input').css('color','#666')
-	}  
+   // if ($('.search-input').val() == "如:川菜") {
+   //    $('.search-input').css('color','#666')
+  /* }  
 	
     $('.search-input').  
         focus(function() {   
@@ -24,6 +24,7 @@ $(document).ready(function($) {
             this.value = "如:川菜";
         }
     }); 
+*/
 
 	$(".first_row_class").click(function(){         
 	   $(this).find('td.collapsible a').click();

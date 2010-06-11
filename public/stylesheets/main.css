@@ -157,7 +157,7 @@ ul.menu li.logo{
 #search_area{ 
 	position:relative;  
 	padding:10px;
-	width:470px; 
+	width:540px; 
 	height:50px;
 	background:#FDF0C0;
 	margin:0px auto
@@ -174,7 +174,7 @@ form.search-form{
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	border: 1px solid #631400;
-	width: 240px;
+	width: 140px;
 	padding-top: 4px;
 	padding-right: 4px;
 	padding-bottom: 4px;

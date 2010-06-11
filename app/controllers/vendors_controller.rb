@@ -4,7 +4,7 @@ class VendorsController < ApplicationController
   def index        
     @search = true                    
     set_filter
-    @search = Vendor.search(:name_like => params[:query],:city_equals => session[:city])     
+    @search = Vendor.search(:category_like => params[:query],:city_equals => session[:city],:address_like => params[:location])     
     @vendors = @search.find(:all,:limit => 30)
     
     respond_to do |format|

@@ -52,8 +52,9 @@
     </div> 
     <% if @search -%> 
     <div id="search_area" class='ui-corner-bottom'>
-         <% form_tag(vendors_path,:class => 'search-form',:method => :get) do %>
-          <%= text_field_tag 'query','',:class => 'search-input',:value => params[:query] || '如:川菜'%>
+         <% form_tag(vendors_path,:class => 'search-form',:method => :get) do %>   
+           在<%= text_field_tag 'location','',:class => 'search-input',:style => "width:100px;",:value =>params[:location]%>
+           附近找<%= text_field_tag 'query','',:class => 'search-input',:value => params[:query] %>
           <%=image_submit_tag "/images/bg/so_bot_big.png",:class => 'search-submit'%> 
           <%=image_submit_tag "/images/bg/so_nearby_big.gif",:class => 'search-submit',:name => 'nearby',:onclick => "$('.search-input').val('')"%>
          <% end %>   

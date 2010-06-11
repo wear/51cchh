@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController 
   def show      
+    session[:city] = params[:city] || 'sh'      
     @search = true
     set_filter
     @specify_category = Category.find(params[:id])   
