@@ -66,6 +66,7 @@ class UsersController < ApplicationController
   
   def setting 
     @user = current_user
+    @user.locations.build if @user.locations.blank?
     respond_to do |wants|
       wants.html {  }
     end

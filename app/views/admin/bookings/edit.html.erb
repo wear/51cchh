@@ -1,0 +1,10 @@
+<% content_for :head do -%>
+<div id="warpper-header">
+  <h2>订单管理</h2>
+</div>
+<% end -%>
+<%= @booking.mobile %> 在 <%= @booking.vendor.name %> 消费了
+<% semantic_form_for @booking,:url => admin_booking_path(@booking) do |c| %> 
+  <%= c.input :paid,:label => '消费金额' %>
+  <%= c.buttons %>
+<% end %>

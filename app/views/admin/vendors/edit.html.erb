@@ -1,0 +1,21 @@
+<% content_for :head do -%>
+<div id="warpper-header">
+  <h2>编辑分类</h2>
+</div>
+<% end -%>     
+<% semantic_form_for @vendor,:url => admin_vendor_path(@vendor) do |c| %> 
+  <%= c.input :name,:label => '名称' %>
+  <%= c.input :address,:label => '地址' %>  
+  <%= c.input :phone,:label => '电话' %>
+  <%= c.input :tags,:label => '标签' %>  
+  <%= c.input :city,:label => '城市',:as => :select,:collection => ['bj','sh'],:selected => 'sh' %> 
+  <%= c.input :taste,:label => '口味',:as => :select,:collection => (10..30).to_a ,:selected => 15 %>   
+  <%= c.input :service,:label => '服务',:as => :select,:collection => (10..30).to_a,:selected => 15  %>   
+  <%= c.input :env,:label => '环境',:as => :select,:collection => (10..30).to_a,:selected => 15  %>   
+  <%= c.input :avg,:label => '人均' %>  
+  <%= c.input :discount,:label => '折扣'  %> 
+  <%= c.input :customer_discount,:label => '明折' %> 
+  <%= c.input :system_discount,:label => '暗折' %>
+  <%= c.buttons %>
+<% end %>
+

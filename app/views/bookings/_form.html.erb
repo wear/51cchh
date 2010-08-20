@@ -80,4 +80,6 @@
   	<%= submit_tag "下一步"%> 
   	</li>
   </ul>  
-  <%= f.hidden_field :vendor_id, :value => @vendor.id %> 
+  <%= f.hidden_field :vendor_id, :value => @vendor.id %>  
+  <%= f.hidden_field :customer_discount, :value => @vendor.customer_discount %>  
+  <%= f.hidden_field :system_discount, :value => @vendor.system_discount %>   

@@ -1,0 +1,11 @@
+<% content_for :head do -%>
+<div id="warpper-header">
+  <h2><%=link_to '<<返回',admin_vendors_path %> </h2>
+</div>
+<% end -%>
+
+<%= @vendor.name %>
+
+<% content_for :sidebar do %>  
+  <%=link_to '编辑',edit_admin_vendor_path(@vendor) %> 
+<% end%>

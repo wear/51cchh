@@ -1,0 +1,22 @@
+<% content_for :head do -%>
+<div id="warpper-header">
+  <h2>所有记录</h2>
+</div>
+<% end -%>    
+ 
+<table border="0" cellspacing="0" cellpadding="0" class='grid'>
+<thead>
+  <tr><th>用户</th><th>商户</th><th>折扣</th><th>时间</th><th>消费金额</th><th>返点</th><th>佣金</th><th>操作</th></tr>
+</thead>
+<tbody>   
+  <% @bookings.each do |booking| %>
+  <tr><td><%= booking.mobile %> </td><td><%=booking.vendor.name%></td><td><%=booking.vendor.discount%></td>
+    <td><%=booking.created_at.to_s(:db)%></td><td><%=booking.paid%></td>
+    <td><%=payback(booking)%></td>
+    <td><%=payus(booking)%></td>
+    <td><%=link_to '更新消费',edit_admin_booking_path(booking)%> | <%=link_to '删除',admin_booking_path(booking),:method => :delete %><td>
+  </tr>
+  <% end %> 
+</tbody>
+</table>
+           

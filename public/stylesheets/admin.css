@@ -7,7 +7,7 @@
 }
 img, div,a { behavior: url(css/iepngfix.htc) }
 body{
-	font:12px "HelveticaNeue-Light", "HelveticaNeue", Helvetica, Arial, sans-serif; ; 
+	font:12px 'Microsoft YaHei' '微软雅黑' '雅黑' arial '宋体';  
 	line-height: 2em; 
 }
 a, a:visited{
@@ -55,7 +55,7 @@ margin-top:20px;
 
 #content{    
 	background:#fff ;
-	width:680px;
+	width:780px;
 	float:left;
 	margin:10px 0 10px 0;
 }   
@@ -63,13 +63,13 @@ margin-top:20px;
 #warpper-header{
 	padding:10px 10px;
 	background:#EEF6FE;
-	width:660px;
+	width:760px;
 }  
 
 #body{margin:20px;}                       
 
 #sidebar{
-	width:230px;
+	width:130px;
 	float:right;
 	margin:10px 0 10px 0;
 	padding:10px;

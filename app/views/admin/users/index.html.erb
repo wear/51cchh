@@ -1,0 +1,25 @@
+<% content_for :head do -%>
+<div id="warpper-header">
+  <h2>所有用户</h2>
+</div>
+<% end -%>              
+
+
+<table border="0" cellspacing="0" cellpadding="0">
+<thead>
+  <tr><th>用户名</th><th>手机</th><th>预定数</th><th>消费金额</th><th>佣金</th><th>注册日期</th><th>操作</th></tr>
+</thead>
+<tbody>  
+  <% @users.each do |user| %>
+      <tr>
+        <td><%=link_to user.login,admin_user_path(user) %></td>
+        <td><%=user.mobile%></td>
+        <td><%#=user.bookings_discount%></td>
+        <td><%#=user.bookings_count%></td>
+        <td><%#=%></td>  
+        <td><%#=total_commission(vendor)%></td> 
+      </tr> 
+  <% end %>
+
+</tbody>
+</table>

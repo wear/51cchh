@@ -1,18 +1,25 @@
 <h1>预定历史记录</h1>
 
-<table>
+<table class='grid' cellspacing="0" cellpadding="0" >
+<thead>
   <tr>  
     <th>餐馆名称</th>
     <th>预定时间</th>
-    <th>联系人</th>
+    <th>返点</th>
+    <th>消费金额</th>
   </tr>
-
+</thead>
+<tbody>
 <% @bookings.each do |booking| %>
   <tr>
     <td><%= link_to booking.vendor.name, booking.vendor %></td>
-    <td><%= booking.created_at.to_s(:db)%></td>
-    <td><%=booking.contact%></td>
+    <td><%= booking.created_at.to_s(:db)%></td>     
+    <td><%= payback(booking) %></td> 
+    <td><%= booking.paid %></td>
   </tr>
 <% end %>
-</table>
+</tbody>
+</table> 
+                                      
+<h3>共计消费了<%=total_customer_paid @bookings%>,获返点<%=total_customer_commission(@bookings)%></h3>
 

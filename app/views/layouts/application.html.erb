@@ -17,21 +17,23 @@
 	
 	
 </head>
-<body onload='geolocation()'> 
+<body onload='change_vendors()'> 
   <div id="container"> 
     <div id="header">  
          <div id="top_bar_l">
-           欢迎访问<span class="b">无忧吃吃喝喝</span> 
+           欢迎访问<span class="b">无忧吃吃喝喝</span>   
+           <% if false %>
   	  	   <span class='city'><%=render_city%></span><%=link_to_function '切换城市',"change_city()",:class => 'array' %> 
   	  	   <div id="cities">
   	  	      <ul>
     	  	     <li><%=link_to '上海',root_path(:city => 'sh')%></li>
     	  	     <li><%=link_to '北京',root_path(:city => 'bj')%></li>
     	  	    </ul> 
-  	  	   </div>
+  	  	   </div>      
+  	  	   <% end %>
         </div>  
         <div id="top_bar_r">
-            <% if logged_in? %>	
+            <% if logged_in? %>	   
               <%= link_to '预定历史', user_bookings_path(current_user) %>
               <%= link_to '帐户设置', setting_path %>
               <%= link_to '注销', logout_path, :method => 'delete' %>
@@ -40,32 +42,42 @@
               已经注册了？<%= link_to '立即登录', login_path %>
             <% end %>
         </div>
-       <ul class='menu'>
+       <ul class='menu'> 
+         <% if false %>
          <li class='xc'><%=image_tag('blank.gif')%></li> 
          <li class='yy'><%=image_tag('blank.gif')%></li> 
          <li class='xd'><%=image_tag('blank.gif')%></li> 
+         <% end %>
          <li class='logo'><%=link_to image_tag('blank.gif'),root_path %></li>
+          <% if false %>  
          <li class='ll'><%=image_tag('blank.gif')%></li>
          <li class='zc'><%=image_tag('blank.gif')%></li>
          <li class='jb'><%=image_tag('blank.gif')%></li> 
+         <% end %>
        </ul>
     </div> 
-    <% if @search -%> 
+    <% if false -%> 
     <div id="search_area" class='ui-corner-bottom'>
          <% form_tag(vendors_path,:class => 'search-form',:method => :get) do %>   
-           在<%= text_field_tag 'location','',:class => 'search-input',:style => "width:100px;",:value =>params[:location]%>
-           附近找<%= text_field_tag 'query','',:class => 'search-input',:value => params[:query] %>
+          <%= text_field_tag 'query','',:class => 'search-input',:value => params[:query] %>
           <%=image_submit_tag "/images/bg/so_bot_big.png",:class => 'search-submit'%> 
-          <%=image_submit_tag "/images/bg/so_nearby_big.gif",:class => 'search-submit',:name => 'nearby',:onclick => "$('.search-input').val('')"%>
-         <% end %>   
+          <%#=image_submit_tag "/images/bg/so_nearby_big.gif",:class => 'search-submit',:name => 'nearby',:onclick => "$('.search-input').val('')"%> 
+         <% end %>  
+         <% if logged_in? %>
+         <%#=link_to_function '常用地址周边',"change_location()",:class => 'array',:style => 'margin:15px 10px;' %> 
+   	  	   <div id="locations">
+   	  	      <ul>                                                
+   	  	        <% current_user.locations.each do |location| %>
+     	  	     <li><%=link_to location.name,vendors_path(:location => location.name)%></li>
+     	  	     <% end %>
+     	  	    </ul> 
+   	  	   </div>  
+   	  	<% end %>
     </div>    
     <% end %>
     <div id='wrapper'> 
       <%= render :partial => '/shared/notice' %>
       <%= yield %> 
-      <div id="geo">
-        
-      </div>
     </div>
      <div id="footer">
        <%= render :partial => '/shared/footer' %> 

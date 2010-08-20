@@ -1,7 +1,10 @@
 class Booking < ActiveRecord::Base   
-  belongs_to :vendor
+  belongs_to :vendor, :counter_cache => true 
+  belongs_to :user, :class_name => "User", :foreign_key => "mobile", :counter_cache => true
 
-  belongs_to :bookable, :polymorphic => true
+  belongs_to :bookable, :polymorphic => true   
+  
+  validates_numericality_of :paid,:customer_discount,:system_discount
    
 #  belongs_to :discount
   
@@ -19,10 +22,9 @@ class Booking < ActiveRecord::Base
 
   acts_as_state_machine :initial => :pending, :column => 'status'
 
-
   state :pending 
   # need to send a sms message to user
-  state :running,:enter => :send_sms
+  state :running#,:enter => :send_sms
   state :closed
 
   event :run do
@@ -31,6 +33,10 @@ class Booking < ActiveRecord::Base
 
   event :close do
     transitions :to => :closed, :from => :running
+  end 
+        
+  def commission
+    (paid * (vendor.customer_discount +  vendor.system_discount)/10).to_i
   end 
   
   def send_sms

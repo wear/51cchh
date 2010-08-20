@@ -1,0 +1,31 @@
+<% content_for :head do -%>
+<div id="warpper-header">
+  <h2>所有商户</h2>
+</div>
+<% end -%>
+
+<table border="0" cellspacing="0" cellpadding="0">
+<thead>
+  <tr><th>名称</th><th>目前折扣</th><th>目前明折</th><th>目前暗折</th><th>预定次数</th><th>消费了</th><th>佣金总计</th><th>操作</th></tr>
+</thead>
+<tbody>  
+  <% @vendors.each do |vendor| %>
+      <tr>
+        <td><%=link_to vendor.name,admin_vendor_path(vendor) %></td>
+        <td><%=vendor.discount%></td>
+        <td><%=vendor.customer_discount%></td>
+        <td><%=vendor.system_discount%></td>
+        <td><%=vendor.bookings_count%></td>
+        <td><%=total_paid(vendor)%></td>  
+        <td><%=total_commission(vendor)%></td> 
+        <td><%=link_to '编辑',edit_admin_vendor_path(vendor)%> | <%=link_to '删除',admin_vendor_path(vendor),:method => :delete %> | <%=link_to '返还佣金',new_admin_bill_path%></td>
+      </tr> 
+  <% end %>
+
+</tbody>
+</table>
+
+
+<% content_for :sidebar do %>
+  <%=link_to '新增',new_admin_vendor_path%>
+<% end %>

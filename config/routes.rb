@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :locations
+
   map.resources :hesines
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -25,7 +27,11 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   map.admin '/admin', :controller => 'admin' 
   
-  map.namespace 'admin' do |admin| 
+  map.namespace 'admin' do |admin|
+    admin.resources :bills
+    admin.resources :users 
+    admin.resources :vendors
+    admin.resources :bookings
     admin.resources :categories,:collection => { :reset_count => :get }
   end
 

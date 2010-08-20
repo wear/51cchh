@@ -12,10 +12,12 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email,:mobile, :password, :password_confirmation
+  attr_accessible :login, :email,:mobile, :password, :password_confirmation,:locations_attributes
 
-
-  has_many :bookings
+  has_many :bills,:as => :billable
+  has_many :bookings, :class_name => "booking", :foreign_key => "mobile"
+  has_many :locations
+  accepts_nested_attributes_for :locations, :reject_if => proc { |attributes| attributes['name'].blank? }            
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  

@@ -8,18 +8,18 @@
 <div id='notice_msg' class='f_notice'></div>
 <div id="error_msg" class='f_error'></div>
 <% form_tag session_path,:class => 'formtastic' do -%>
-<li><%= label_tag 'login or mobile' %>
-<%= text_field_tag 'login', @login,:id => 'login' %> <%=link_to_function '手机用户获得密码',"send_verify($('#login').val())" %> </li>
+<li><%= label_tag '用户名或手机' %>
+<%= text_field_tag 'login', @login,:id => 'login',:size => 30 %> <%#=link_to_function '手机用户获得密码',"send_verify($('#login').val())" %> </li>
 
-<li><%= label_tag 'password' %>
-<%= password_field_tag 'password', nil %></li>
+<li><%= label_tag '密码' %>
+<%= password_field_tag 'password', nil,:size => 30 %></li>
 
 <!-- Uncomment this if you want this functionality
 <p><%= label_tag 'remember_me', 'Remember me' %>
 <%= check_box_tag 'remember_me', '1', @remember_me %></p>
 -->
 
-<li style='text-align:center'><%= submit_tag 'Log in' %></li>
+<li style='text-align:center'><%= submit_tag '登录' %></li>
 <% end -%>
                                 
 </div> 

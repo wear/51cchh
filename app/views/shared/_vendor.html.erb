@@ -5,8 +5,7 @@
 	<td><%= make_score(vendor.env) %></td>
     <td><%= make_score(vendor.service) %></td> 	
 	<td><span class='rmb'>￥</span><%= vendor.avg.to_i %></td>
-	<td><span class='B'>&nbsp;<%#= format_discount(vendor) %></span></td>
-	<td class='distance_row'><%=distance_of vendor.distance if distance %></td>
+	<td><span class='B'>&nbsp;<%=mingze vendor %></span></td>
     <td><span class='B'><%= make_score(vendor.sum) %></span></td>
 	<td class="collapsible"></td>
 </tr> 

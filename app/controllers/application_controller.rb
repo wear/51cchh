@@ -25,6 +25,13 @@ class ApplicationController < ActionController::Base
   def iphone_user_agent?
     request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(Mobile\/.+Safari)/]
   end
-     
+  
+  def redrect_if_not_admin
+    redirect_to root_path unless logged_in? && current_user.login == 'admin'
+  end
+  
+  def set_section(section)
+    @section = section
+  end
   
 end

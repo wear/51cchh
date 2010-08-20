@@ -20,7 +20,11 @@
     <div id="topmenu">
               <ul>
                 <%#=topnav_tab('Dashbord',:url => admin_path,:section => 'dashboard' )%>
-                <%=topnav_tab('分类',:url => admin_categories_path,:section => 'filters' )%>
+                <%#=topnav_tab('分类',:url => admin_categories_path,:section => 'filters' )%>
+                <%=topnav_tab('商户',:url => admin_vendors_path,:section => 'vendors' )%>
+                <%=topnav_tab('预定管理',:url => admin_bookings_path,:section => 'bookings' )%>
+                <%#=topnav_tab('佣金管理',:url => admin_bookings_path,:section => 'commissions' )%>
+                <%=topnav_tab('用户',:url => admin_users_path,:section => 'users' )%>
               </ul>
           </div>
       </div>

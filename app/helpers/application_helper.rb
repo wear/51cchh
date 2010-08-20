@@ -56,4 +56,12 @@ module ApplicationHelper
     end  
   end
   
+  def mingze(vendor)
+     vendor.discount + vendor.customer_discount
+  end   
+  
+  def anze(vendor)
+    vendor.discount + vendor.system_discount + vendor.customer_discount     
+  end
+  
 end

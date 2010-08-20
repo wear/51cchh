@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100511072837) do
+ActiveRecord::Schema.define(:version => 20100625071920) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -45,10 +45,18 @@ ActiveRecord::Schema.define(:version => 20100511072837) do
     t.string   "category"
     t.string   "city"  
     t.string   'area'
+    t.float    'lng'
+    t.float    'lat'  
+    t.float    "discount",:default => 10  
+    t.float    "customer_discount",:default => 0
+    t.float    "system_discount",:default => 0  
+    t.integer  "bookings_count", :default => 0
   end    
   
   create_table "bookings" do |t|
-    t.integer  "vendor_id"
+    t.integer  "vendor_id" 
+    t.float    "customer_discount" ,:default => 0    
+    t.float    "system_discount",:default => 0 
     t.datetime "date"
     t.integer  "time_range"
     t.integer  "guest_count"
@@ -58,22 +66,37 @@ ActiveRecord::Schema.define(:version => 20100511072837) do
     t.string   "contact"
     t.string   "email"
     t.string   "mobile"
-    t.integer  "discount_id"
-    t.integer  "discount_version"
     t.string   "status"
+    t.integer  'paid',:default => 0
     t.timestamps
-  end            
+  end      
+  
+  create_table "bills" do |t|
+    t.integer  "billable_id"
+    t.string   "billable_type"
+    t.integer  'paid',:default => 0
+    t.timestamps
+  end      
   
   create_table "users", :force => true do |t| 
     t.string "login"
     t.string "mobile"   
+    t.integer "bookings_count"
     t.string "email",:limit => 100
     t.string "crypted_password", :limit => 40 
     t.string "salt", :limit => 40 
     t.string "remember_token", :limit => 40
     t.datetime "remember_token_expires_at"  
-  end 
+  end    
   
   add_index :users, :mobile, :unique => true
+    
+  create_table "locations", :force => true do |t|
+    t.integer :user_id
+    t.string  :name 
+    t.integer :order
+  end
+  
+  add_index :locations, :user_id  
 
 end

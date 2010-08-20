@@ -1,6 +1,4 @@
 <% content_for :headers do -%>
-
-
 <script type="text/javascript" charset="utf-8">
 	$(function () {
 		var tabContainers = $('div.tabs > div');
@@ -16,29 +14,38 @@
 	});
 </script>  
 
-<% if params['nearby.x'] %>
+<% if params['location'] %>
    <script type="text/javascript" charset="utf-8">
-  function geolocation(){  
-    if (navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(showMap);
-        return false;
-    } else {
-      alert('你的浏览器不支持周边查找,请使用最新firefox浏览器!'); 
-      window.location = "/";
-    }
-   }        
-   
-   function showMap(position){
-     var lat = position.coords.latitude;
-     var lng = position.coords.longitude;    
-     $.ajax({
-       type: "GET",
-       url: "/vendors/get_nearby", 
-       dataType: "script",
-       data: "lat="+lat+"&lng="+lng
-     });
+//  function geolocation(){  
+//    if (navigator.geolocation){
+//        navigator.geolocation.getCurrentPosition(showMap);
+//        return false;
+//    } else {
+//      alert('你的浏览器不支持周边查找,请使用最新firefox浏览器!'); 
+//      window.location = "/";
+//    }
+//   }        
 
-    }
+  function change_vendors(){
+    $.ajax({
+      type: "GET",
+      url: "/vendors/get_nearby", 
+      dataType: "script",
+      data: "lat=<%=@location.lat%>&lng=<%=@location.lng%>"
+    });
+  }
+   
+//   function showMap(position){
+//     var lat = position.coords.latitude;
+//     var lng = position.coords.longitude;    
+//     $.ajax({
+//       type: "GET",
+//       url: "/vendors/get_nearby", 
+//       dataType: "script",
+//       data: "lat="+lat+"&lng="+lng
+//     });
+
+//    }
 </script>
 <% end %>
 

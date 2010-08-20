@@ -1,7 +1,8 @@
 class Admin::CategoriesController < ApplicationController
   layout 'admin'  
   
-  def index
+  def index                
+    @section = 'filters'    
     @categories = Category.find(:all)
   end  
   

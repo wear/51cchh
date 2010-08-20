@@ -58,7 +58,6 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        flash[:notice] = '请确认预定信息.'
         format.html { redirect_to(vendor_booking_path @vendor,@booking) }
         format.xml  { render :xml => @booking, :status => :created, :location => @booking }
       else    

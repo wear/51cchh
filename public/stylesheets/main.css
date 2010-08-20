@@ -13,7 +13,16 @@ body {
 	background-color: #ffffff;
 	font-family: Helvetica,Arial;
 	background: url(/images/bg/top_bg.gif) repeat-x top;
-}
+}        
+
+#locations{
+	display:none;
+	left:360px;
+	position:relative;
+	text-align: center;
+	top:0;
+	width: 50px;
+	z-index: 10;}
 
 #container{
 	width:918px;
@@ -120,6 +129,7 @@ ul.menu li.logo{
   background:url(/images/bg/menu.png) no-repeat;
   background-position: 0px 0px; 
   position:relative;
+  margin-left:250px;
   padding:20px;
   width:160px;
   top:-40px;
@@ -157,7 +167,7 @@ ul.menu li.logo{
 #search_area{ 
 	position:relative;  
 	padding:10px;
-	width:540px; 
+	width:360px; 
 	height:50px;
 	background:#FDF0C0;
 	margin:0px auto
@@ -174,7 +184,7 @@ form.search-form{
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	border: 1px solid #631400;
-	width: 140px;
+	width: 220px;
 	padding-top: 4px;
 	padding-right: 4px;
 	padding-bottom: 4px;
@@ -206,7 +216,8 @@ form.search-form{
 
 .tabs{  
 	margin:20px 10px;
-	width:640px;
+/*	width:640px; */
+	width:100%;
 	float:right;
 }              
 
@@ -216,7 +227,8 @@ UL.tabNavigation {
     list-style: none;
     margin: 0;
     padding: 0; 
-    width: 620px;
+/*    width: 620px; */
+width:100%; 
 	background:url(/images/bg/list_top_bar_bg.gif);
 }
 
@@ -299,7 +311,8 @@ table.grid {
 	font-family:arial;
 	font-size: 12px;	
 	clear:both;
-	width:620px;
+/*	width:620px; */
+	width:100%;
 }   
 
 .collapsible a.collapsed {
@@ -558,4 +571,6 @@ form.formtastic fieldset ol li label { display:block; width:5em; float:left; pad
 form.formtastic fieldset ol li li label { line-height:100%; padding-top:0; }
 form.formtastic fieldset ol li li label input { line-height:100%; vertical-align:middle; margin-top:-0.1em;}
 
-
+form.formtastic ol li li.commit{
+	margin-left:40px;  
+}

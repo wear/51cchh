@@ -68,3 +68,7 @@ function change_city(){
 $(document).mouseup(function(e) {
 	$("#cities").hide();     
 });
+
+function change_location(){
+	$("#locations").toggle();
+}

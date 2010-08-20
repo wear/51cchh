@@ -1,4 +1,5 @@
 class VendorsController < ApplicationController
+  include Geokit::Geocoders
   # GET /vendors
   # GET /vendors.xml
   def index        
@@ -6,7 +7,7 @@ class VendorsController < ApplicationController
     set_filter
     @search = Vendor.search(:category_like => params[:query],:city_equals => session[:city],:address_like => params[:location])     
     @vendors = @search.find(:all,:limit => 30)
-    
+    @location = MultiGeocoder.geocode(params['location'])  if params['location']
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @vendors }
